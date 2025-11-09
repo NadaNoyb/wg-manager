@@ -227,7 +227,7 @@ Categories=Network;Utility;
 
 Feel free to submit issues or pull requests if you find bugs or have suggestions for improvements!
 
-This is my copy of desktop shortcut
+This is my copy of desktop shortcut:
 
 [Desktop Entry]
 Name=WG-Manager
