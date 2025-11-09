@@ -185,6 +185,44 @@ WG_CONFIG_DIR="/etc/wireguard/" # Change this to your preferred directory
 
 This script is provided as-is for personal use.
 
+## Creating a Desktop Shortcut
+
+You can create a desktop shortcut to launch WG-Manager easily from your desktop environment.
+
+### Steps to Create a Desktop Shortcut
+
+1. Create a `.desktop` file in your applications directory:
+   ```bash
+   nano ~/.local/share/applications/wg-manager.desktop
+   ```
+
+2. Copy and paste the following content (adjust the path to your script location):
+
+```ini
+[Desktop Entry]
+Name=WG-Manager
+Comment=Manage WireGuard VPN connections
+Exec=gnome-terminal -- /bin/bash -c "sudo /path/to/your/desktop/filename.sh; echo -e '\nPress Enter to close this window...'; read"
+Icon=network-vpn  # You can choose a different icon, e.g., utilities-terminal
+Terminal=false
+Type=Application
+Categories=Network;Utility;
+```
+
+3. Replace `/path/to/your/desktop/filename.sh` with the actual path to your `wireguard.sh` script. For example:
+   ```bash
+   Exec=gnome-terminal -- /bin/bash -c "sudo /home/ts/Documents/wg-mamanger/wireguard.sh; echo -e '\nPress Enter to close this window...'; read"
+   ```
+
+4. Make the file executable:
+   ```bash
+   chmod +x ~/.local/share/applications/wg-manager.desktop
+   ```
+
+5. The shortcut should now appear in your applications menu. You can also drag it to your desktop or pin it to your dock/panel.
+
+**Note:** When you click the shortcut, it will open a terminal window asking for your sudo password, then launch the WG-Manager script.
+
 ## Contributing
 
 Feel free to submit issues or pull requests if you find bugs or have suggestions for improvements!
