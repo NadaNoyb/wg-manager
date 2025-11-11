@@ -65,6 +65,23 @@ get_nm_connection_name() {
     return 1 # Not found
 }
 
+ensure_nm_autoconnect_disabled() {
+    local all_wg_conns=$(sudo nmcli -t -f NAME,TYPE connection show 2>/dev/null | grep ":wireguard$")
+
+    while IFS=: read -r conn_name conn_type; do
+        [[ -z "$conn_name" ]] && continue
+        local autoconnect
+        autoconnect=$(sudo nmcli -g connection.autoconnect connection show "$conn_name" 2>/dev/null)
+        if [[ "${autoconnect,,}" == "yes" ]]; then
+            if sudo nmcli connection modify "$conn_name" connection.autoconnect no 2>/dev/null; then
+                echo -e "${YELLOW}Disabled autoconnect for WireGuard profile '${conn_name}'.${NC}"
+            else
+                echo -e "${YELLOW}Warning: Failed to disable autoconnect for '${conn_name}'.${NC}"
+            fi
+        fi
+    done <<< "$all_wg_conns"
+}
+
 
 # Function to check WireGuard interface status
 get_wg_status() {
@@ -156,6 +173,7 @@ import_wg_config() {
         local imported_conn=$(sudo nmcli -t -f NAME connection show 2>/dev/null | grep -i "$base_name" | head -n1)
         if [[ -n "$imported_conn" ]]; then
             echo -e "${GREEN}Successfully imported '$config_file_path_orig' as NetworkManager connection '$imported_conn'.${NC}"
+            ensure_nm_autoconnect_disabled
         else
             echo -e "${YELLOW}Import command succeeded, but connection name verification failed.${NC}"
             echo -e "${YELLOW}The config file is available at $dest_path and can be used with wg-quick.${NC}"
@@ -346,6 +364,8 @@ select_or_import_profile() {
 check_root # Ensure the script is run as root/sudo
 
 echo -e "$ASCII_ART" # Display ASCII art
+
+ensure_nm_autoconnect_disabled
 
 # Initial profile selection or import
 # This function now handles initial selection, import, delete, and exit.

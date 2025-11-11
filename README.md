@@ -225,15 +225,4 @@ Categories=Network;Utility;
 
 ## Contributing
 
-Feel free to submit issues or pull requests if you find bugs or have suggestions for improvements!
-
-This is my copy of desktop shortcut:
-
-[Desktop Entry]
-Name=WG-Manager
-Comment=Manage WireGuard VPN connections
-Exec=gnome-terminal -- /bin/bash -c "sudo /path/to/wireguard.sh; echo -e '\nPress Enter to close this window...'; read"
-Icon=network-vpn  # You can choose a different icon, e.g., utilities-terminal
-Terminal=false
-Type=Application
-Categories=Network;Utility;
+Feel free to submit issues or pull requests if you find bugs or have suggestions for improvements
