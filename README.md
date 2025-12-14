@@ -4,12 +4,12 @@ A simple, interactive bash script for managing WireGuard VPN profiles on Linux s
 
 ## Features
 
-- 🚀 **Easy VPN Control**: Bring VPN connections up or down with a single command
-- 📥 **Import Profiles**: Import new WireGuard configuration files via NetworkManager
-- 🗑️ **Delete Profiles**: Remove VPN profiles and their associated NetworkManager connections
-- 📋 **Profile Management**: Switch between multiple VPN profiles easily
-- 🎨 **Colorful Interface**: User-friendly colored terminal interface with ASCII art
-- ✅ **Error Handling**: Robust error handling and validation
+- **Easy VPN Control**: Bring VPN connections up or down with a single command
+- **Import Profiles**: Import new WireGuard configuration files via NetworkManager
+- **Delete Profiles**: Remove VPN profiles and their associated NetworkManager connections
+- **Profile Management**: Switch between multiple VPN profiles easily
+- **Colorful Interface**: User-friendly colored terminal interface with ASCII art
+- **Error Handling**: Robust error handling and validation
 
 ## Requirements
 
